@@ -659,6 +659,7 @@ class Albumentations:
             check_version(A.__version__, '1.0.3', hard=True)  # version requirement
 
             T = [
+                A.ShiftScaleRotate(rotate_limit=180, p=0.6), # Siin Lab: 60% of the time, rotate the image
                 A.Blur(p=0.01),
                 A.MedianBlur(p=0.01),
                 A.ToGray(p=0.01),
