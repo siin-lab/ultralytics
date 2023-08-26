@@ -151,6 +151,10 @@ class BaseDataset(Dataset):
                 im = cv2.imread(f)  # BGR
                 if im is None:
                     raise FileNotFoundError(f'Image Not Found {f}')
+            if np.random.uniform() < 0.4: # Siin Lab: squash 40% of images
+                # squash image
+                im = cv2.resize(im, (self.imgsz, self.imgsz), interpolation=cv2.INTER_LINEAR)
+
             h0, w0 = im.shape[:2]  # orig hw
             r = self.imgsz / max(h0, w0)  # ratio
             if r != 1:  # if sizes are not equal
